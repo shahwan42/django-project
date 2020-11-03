@@ -50,6 +50,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Third party
+    "phonenumber_field",
+    # Local
+    "pname.users.apps.UsersConfig",
 ]
 
 MIDDLEWARE = [
@@ -163,3 +167,10 @@ if DEPLOY and DEPLOY not in ("LOCAL", "TESTING"):
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# user model
+AUTH_USER_MODEL = "users.User"
+
+# login & logout redirect urls
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "home"
