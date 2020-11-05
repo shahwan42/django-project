@@ -51,3 +51,31 @@ exclude = '''
     .eggs,
     *.egg
     '''
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs        # exclude a few common directories in the
+    | \.git         # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | venv,
+    | \.env,
+    | env,
+    | _build
+    | buck-out
+    | build
+    | dist
+    | migrations
+    | __pycache__
+  )/
+  | foo.py          # also separately exclude a file named foo.py in
+                    # the root of the project
+)
+'''
