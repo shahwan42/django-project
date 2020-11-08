@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 import environ
 import sentry_sdk
 
@@ -22,12 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # django-environ
 env = environ.Env()
 
-# Deploy NOTE defined first to decide when to read the .env file
+# Read the .env file when exists, otherwise read directly from EnvVars
+if os.path.exists(str(BASE_DIR / ".env")):
+    environ.Env.read_env(str(BASE_DIR / ".env"))
+
+# Deploy Environment?
 DEPLOY = env("DEPLOY", str, None)
 
-# reading .env file () when testing and in LOCAL env else read from env vars
-if not DEPLOY or DEPLOY == "LOCAL":
-    environ.Env.read_env(str(BASE_DIR / ".env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
