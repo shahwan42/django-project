@@ -60,4 +60,4 @@ jobs:
     - name: Run tests
       run: |
         #pytest
-        poetry run manage.py test --parallel 4
+        poetry run python manage.py test
